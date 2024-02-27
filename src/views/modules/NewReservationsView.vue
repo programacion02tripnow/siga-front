@@ -20,9 +20,10 @@
       </b-modal>
 
       <!-- modal para formulario de cada servicio !-->
-      <component :is="addServiceModal" v-if="addServiceModal" ref="serviceModalComponent" :providers="providers"
-        :reservation-detail-param="reservationDetailSelected" :is-pack="isPack" @save="addServiceSave"
-        @close="cancelServiceModal" @cancel-modal="cancelServiceModalPack" @onCommentSaved="initData" />
+      <component :is="addServiceModal" v-if="addServiceModal" ref="serviceModalComponent" :users="users"
+        :providers="providers" :reservation-detail-param="reservationDetailSelected" :is-pack="isPack"
+        @save="addServiceSave" @close="cancelServiceModal" @cancel-modal="cancelServiceModalPack"
+        @onCommentSaved="initData" />
 
       <!-- modal para selector de servicio !-->
       <select-service-type-modal ref="selectServiceTypeModal" @onSelect="addServiceSelected" />
@@ -442,21 +443,11 @@ export default {
           this.reservation = result[result.length - 1].data
         }
 
-        console.log(this.totalWallet)
-        /* const additional = new PaymentMethodAdditionalField()
-        additional.initValues([]) */
-        /* additional.setAttr('id', 0)
-        additional.setAttr('name', 'Código de monedero')
-        additional.setAttr('type', 1)
-        additional.setAttr('is_required', 1) */
-
-
-
-
         this.calcTotal()
         this.loading = false
         this.showOverlay = false
 
+        console.log(this.users)
         if (this.totalWallet > 0) {
           const pm = new PaymentMethod()
           pm.setAttr('id', 0)
@@ -521,6 +512,8 @@ export default {
             }
           }
         }
+
+        this.reservation.user_id = reservationDetail.user_id
         this.calcTotal()
         // if (!isPack && this.reservation.id)
         {

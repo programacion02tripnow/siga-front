@@ -6,21 +6,29 @@
         <div class="row">
           <div class="col-12">
             <div class="row">
-              <div class="col-12 col-md-6">
+              <div class="col-12 col-md-4">
                 <div class="form-group">
                   <label>Proveedor*</label>
                   <v-select v-model="reservation_detail.provider_id" label="text" :clearable="false" :options="providers"
                     :reduce="value => value.getAttr('id')" :get-option-label="option => option.getAttr('name')" />
                 </div>
               </div>
-              <div class="col-12 col-md-6">
+              <div class="col-12 col-md-4">
                 <div class="form-group">
                   <label>Localizador*</label>
                   <input v-model="reservation_detail.provider_confirmation_number" class="form-control" type="text"
                     placeholder="Localizador">
                 </div>
               </div>
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label>Usuario*</label>
+                  <v-select v-model="reservation_detail.user_id" label="text" :clearable="false" :options="users"
+                    :reduce="value => value.getAttr('id')" :get-option-label="option => option.getAttr('first_name')" />
+                </div>
+              </div>
             </div>
+
 
             <div class="row">
               <div class="col-12 col-md-6">
@@ -208,6 +216,10 @@ export default {
       type: Object,
       default: () => null,
     },
+    users: {
+      type: Array,
+      default: () => []
+    }
   },
   data() {
     return {
@@ -219,6 +231,8 @@ export default {
   mounted() {
     this.roomUpdated()
     this.updateTotal()
+
+    console.log(this.providers)
   },
   methods: {
     onSettlementDateChange() {
@@ -285,6 +299,11 @@ export default {
     save(e) {
       if (!this.reservation_detail.provider_id) {
         this.showError('Seleccione un proveedor')
+        e.preventDefault()
+        return
+      }
+      if (!this.reservation_detail.user_id) {
+        this.showError('Seleccione un usuario')
         e.preventDefault()
         return
       }
@@ -445,6 +464,7 @@ export default {
       public_price: null,
       net_price: null,
       provider_id: null,
+      user_id: null,
       cancellable: false,
       editable: false,
       refundable: false,
