@@ -18,22 +18,22 @@ export default {
         class: 'App\\Models\\FlightReservation',
         value: FlightServiceModal,
       },
-      {
-        text: 'Tour',
-        class: 'App\\Models\\TourReservation',
-        value: TourServiceModal,
-      },
-      {
-        text: 'Renta de coche',
-        class: 'App\\Models\\CarRentalReservation',
-        value: CarRentalServiceModal,
-      },
+      // {
+      //   text: 'Tour',
+      //   class: 'App\\Models\\TourReservation',
+      //   value: TourServiceModal,
+      // },
+      // {
+      //   text: 'Renta de coche',
+      //   class: 'App\\Models\\CarRentalReservation',
+      //   value: CarRentalServiceModal,
+      // },
 
-      {
-        text: 'Traslado',
-        class: 'App\\Models\\PickupReservation',
-        value: PickupServiceModal,
-      },
+      // {
+      //   text: 'Traslado',
+      //   class: 'App\\Models\\PickupReservation',
+      //   value: PickupServiceModal,
+      // },
     ],
   },
   getters: {},
