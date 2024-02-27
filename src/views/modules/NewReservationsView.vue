@@ -175,12 +175,12 @@
               <b-row><!-- Col: Total -->
                 <b-col>
                   <div class="m-0 d-flex justify-content-between">
-                    <span>Total público:</span>
-                    <b>$ {{ numberFormat(reservation.public_price) }}</b>
-                  </div>
-                  <div class="m-0 d-flex justify-content-between">
                     <span>Total neto:</span>
                     <b>$ {{ numberFormat(reservation.net_price) }}</b>
+                  </div>
+                  <div class="m-0 d-flex justify-content-between">
+                    <span>Total bruto:</span>
+                    <b>$ {{ numberFormat(reservation.public_price) }}</b>
                   </div>
                   <div class="m-0 d-flex justify-content-between">
                     <span>Total agregado:</span>
