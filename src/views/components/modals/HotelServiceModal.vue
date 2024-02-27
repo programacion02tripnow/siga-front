@@ -40,7 +40,7 @@
 
               <div class="col-12 col-md-6" v-if="reservation_detail.with_payments">
                 <div class="form-group">
-                  <label>Fecha máxima de pago*</label>
+                  <label>Fecha límite de pago*</label>
                   <input v-model="reservation_detail.max_payment_date" type="date" class="form-control"
                     placeholder="Fecha máxima de pago">
                 </div>
@@ -334,6 +334,11 @@ export default {
       }
       if (new Date(this.reservation_detail.reservable.check_in) > new Date(this.reservation_detail.reservable.check_out)) {
         this.showError('La fecha de check in tiene que ser menor al check out')
+        e.preventDefault()
+        return
+      }
+      if (this.reservation_detail.with_payments && (new Date(this.reservation_detail.reservable.check_in) > new Date(this.reservation_detail.max_payment_date))) {
+        this.showError('La fecha de check in tiene que ser menor a la fecha limite de pago')
         e.preventDefault()
         return
       }

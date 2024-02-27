@@ -4,43 +4,24 @@
 
       <!-- Brand logo-->
       <b-link class="brand-logo">
-        <b-img
-          :src="appLogoImage"
-          alt="logo"
-          style="width: 150px;"
-        />
+        <b-img :src="appLogoImage" alt="logo" style="width: 150px;" />
       </b-link>
       <!-- /Brand logo-->
 
       <!-- Left Text-->
-      <b-col
-        lg="8"
-        class="d-none d-lg-flex align-items-center p-0"
-      >
+      <b-col lg="8" class="d-none d-lg-flex align-items-center p-0">
         <div class="w-100 d-lg-flex align-items-center justify-content-center">
-          <b-img
-            :src="imgUrl"
-            alt="Login V2"
-            style="min-width: 100%; height: 100vh;object-fit: cover"
-          />
+          <b-img :src="imgUrl" alt="Login V2" style="min-width: 100%; height: 100vh;object-fit: cover" />
         </div>
       </b-col>
       <!-- /Left Text-->
 
       <!-- Login-->
-      <b-col
-        lg="4"
-        class="d-flex align-items-center auth-bg px-2 p-lg-5"
-      >
-        <b-col
-          sm="8"
-          md="6"
-          lg="12"
-          class="px-xl-2 mx-auto"
-        >
+      <b-col lg="4" class="d-flex align-items-center auth-bg px-2 p-lg-5">
+        <b-col sm="8" md="6" lg="12" class="px-xl-2 mx-auto">
 
           <h2 class="card-title font-weight-bold mb-1">
-            ¡Bienvenido a CRM Travel Design! 👋
+            ¡Bienvenido a CRM SIGA!
           </h2>
 
           <b-card-text class="mb-2">
@@ -49,27 +30,12 @@
 
           <!-- form -->
           <validation-observer ref="loginValidation">
-            <b-form
-              class="auth-login-form mt-2"
-              @submit.prevent
-            >
+            <b-form class="auth-login-form mt-2" @submit.prevent>
               <!-- email -->
-              <b-form-group
-                label="Correo electrónico"
-                label-for="login-email"
-              >
-                <validation-provider
-                  #default="{ errors }"
-                  name="correo electrónico"
-                  rules="required|email"
-                >
-                  <b-form-input
-                    id="login-email"
-                    v-model="userEmail"
-                    :state="errors.length > 0 ? false:null"
-                    name="login-email"
-                    placeholder="john@traveldesign.com"
-                  />
+              <b-form-group label="Correo electrónico" label-for="login-email">
+                <validation-provider #default="{ errors }" name="correo electrónico" rules="required|email">
+                  <b-form-input id="login-email" v-model="userEmail" :state="errors.length > 0 ? false : null"
+                    name="login-email" placeholder="john@traveldesign.com" />
                   <small class="text-danger">{{ errors[0] }}</small>
                 </validation-provider>
               </b-form-group>
@@ -82,30 +48,13 @@
                     <small>Forgot Password?</small>
                   </b-link>
                 </div>-->
-                <validation-provider
-                  #default="{ errors }"
-                  name="contraseña"
-                  rules="required"
-                >
-                  <b-input-group
-                    class="input-group-merge"
-                    :class="errors.length > 0 ? 'is-invalid':null"
-                  >
-                    <b-form-input
-                      id="login-password"
-                      v-model="password"
-                      :state="errors.length > 0 ? false:null"
-                      class="form-control-merge"
-                      :type="passwordFieldType"
-                      name="login-password"
-                      placeholder="············"
-                    />
+                <validation-provider #default="{ errors }" name="contraseña" rules="required">
+                  <b-input-group class="input-group-merge" :class="errors.length > 0 ? 'is-invalid' : null">
+                    <b-form-input id="login-password" v-model="password" :state="errors.length > 0 ? false : null"
+                      class="form-control-merge" :type="passwordFieldType" name="login-password"
+                      placeholder="············" />
                     <b-input-group-append is-text>
-                      <feather-icon
-                        class="cursor-pointer"
-                        :icon="passwordToggleIcon"
-                        @click="togglePasswordVisibility"
-                      />
+                      <feather-icon class="cursor-pointer" :icon="passwordToggleIcon" @click="togglePasswordVisibility" />
                     </b-input-group-append>
                   </b-input-group>
                   <small class="text-danger">{{ errors[0] }}</small>
@@ -124,12 +73,7 @@
               </b-form-group>-->
 
               <!-- submit buttons -->
-              <b-button
-                type="submit"
-                variant="primary"
-                block
-                @click="validationForm"
-              >
+              <b-button type="submit" variant="primary" block @click="validationForm">
                 Iniciar sesión
               </b-button>
             </b-form>

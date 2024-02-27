@@ -6,14 +6,6 @@ export default [
     resource: 'Dashboard',
     action: 'VIEW_GENERAL_DASHBOARD',
   },
-
-  {
-    title: 'Ventas',
-    route: 'sales',
-    icon: 'HomeIcon',
-    resource: 'Dashboard',
-    action: 'VIEW_INDIVIDUAL_DASHBOARD',
-  },
   {
     title: 'Leads',
     // route: 'leadsView',
@@ -21,13 +13,6 @@ export default [
     resource: 'Leads',
     action: 'VIEW_LEAD',
     children: [
-      {
-        title: 'Tablero de Leads',
-        route: 'leadsView',
-        icon: 'ZapIcon',
-        resource: 'Leads',
-        action: 'VIEW_LEAD',
-      },
       {
         title: 'Leads Tabla',
         route: 'leadsBackupView',
@@ -51,20 +36,39 @@ export default [
       },
     ],
   },
-
   {
-    title: 'Métodos de pago',
-    route: 'paymentMethodsView',
-    icon: 'CreditCardIcon',
-    resource: 'Métodos de pago',
-    action: 'VIEW_PAYMENT_METHOD',
-  },
-  {
-    title: 'Proveedores',
-    route: 'providersView',
-    icon: 'ShoppingBagIcon',
-    resource: 'Proveedores',
-    action: 'VIEW_PROVIDER',
+    title: 'Configuración',
+    icon: "SettingsIcon",
+    children: [
+      {
+        title: 'Métodos de pago',
+        route: 'paymentMethodsView',
+        icon: 'CreditCardIcon',
+        resource: 'Métodos de pago',
+        action: 'VIEW_PAYMENT_METHOD',
+      },
+      {
+        title: 'Proveedores',
+        route: 'providersView',
+        icon: 'ShoppingBagIcon',
+        resource: 'Proveedores',
+        action: 'VIEW_PROVIDER',
+      },
+      {
+        title: 'Usuarios',
+        route: 'usersView',
+        icon: 'UsersIcon',
+        resource: 'Usuarios y roles',
+        action: 'VIEW_USER',
+      },
+      {
+        title: 'Roles y permisos',
+        route: 'rolesView',
+        icon: 'UsersIcon',
+        resource: 'Usuarios y roles',
+        action: 'VIEW_ROLE',
+      },
+    ]
   },
   {
     title: 'Reservaciones',
@@ -97,19 +101,5 @@ export default [
     icon: 'UserCheckIcon',
     resource: 'Clientes',
     action: 'VIEW_CUSTOMER',
-  },
-  {
-    title: 'Usuarios',
-    route: 'usersView',
-    icon: 'UsersIcon',
-    resource: 'Usuarios y roles',
-    action: 'VIEW_USER',
-  },
-  {
-    title: 'Roles y permisos',
-    route: 'rolesView',
-    icon: 'UsersIcon',
-    resource: 'Usuarios y roles',
-    action: 'VIEW_ROLE',
-  },
+  }
 ]
