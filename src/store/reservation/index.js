@@ -18,11 +18,11 @@ export default {
         class: 'App\\Models\\FlightReservation',
         value: FlightServiceModal,
       },
-      // {
-      //   text: 'Tour',
-      //   class: 'App\\Models\\TourReservation',
-      //   value: TourServiceModal,
-      // },
+      {
+        text: 'Tour',
+        class: 'App\\Models\\TourReservation',
+        value: TourServiceModal,
+      },
       // {
       //   text: 'Renta de coche',
       //   class: 'App\\Models\\CarRentalReservation',

@@ -223,18 +223,6 @@
                 :show-form="reservation_detail.id && reservation_detail.id > 0" @onCommentSaved="onCommentSaved" />
             </div>
 
-            <hr>
-            <div class="row">
-              <div class="col-12">
-                <div v-if="!reservation_detail.multimedia">
-                  <!-- Styled -->
-                  <label>Voucher del proveedor</label>
-                  <b-form-file v-model="file" placeholder="Escoge el archivo o arrastra aquí..."
-                    drop-placeholder="Suelta aquí..." />
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>

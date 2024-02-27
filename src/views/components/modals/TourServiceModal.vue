@@ -1,13 +1,6 @@
 <template>
-  <b-modal
-    ref="refFormModal"
-    title="Agrega servicio de tour"
-    ok-title="Aceptar"
-    cancel-title="Cancelar"
-    no-close-on-backdrop
-    @ok="save"
-    @hidden="$emit('close')"
-  >
+  <b-modal ref="refFormModal" title="Agrega servicio de tour" ok-title="Aceptar" cancel-title="Cancelar"
+    no-close-on-backdrop @ok="save" @hidden="$emit('close')">
     <div style="display:flex; align-items: center; justify-content: center">
       <div class="container">
         <div class="row">
@@ -16,25 +9,15 @@
               <div class="col-12 col-md-6">
                 <div class="form-group">
                   <label>Proveedor*</label>
-                  <v-select
-                    v-model="reservation_detail.provider_id"
-                    label="text"
-                    :clearable="false"
-                    :options="providers"
-                    :reduce="value=>value.getAttr('id')"
-                    :get-option-label="option=>option.getAttr('name')"
-                  />
+                  <v-select v-model="reservation_detail.provider_id" label="text" :clearable="false" :options="providers"
+                    :reduce="value => value.getAttr('id')" :get-option-label="option => option.getAttr('name')" />
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <div class="form-group">
                   <label>Confirmación*</label>
-                  <input
-                    v-model="reservation_detail.provider_confirmation_number"
-                    type="text"
-                    class="form-control"
-                    placeholder="Numero de confirmación"
-                  >
+                  <input v-model="reservation_detail.provider_confirmation_number" type="text" class="form-control"
+                    placeholder="Numero de confirmación">
                 </div>
               </div>
             </div>
@@ -42,25 +25,16 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="form-group">
-                  <label>Fecha máxima de liquidación*</label>
-                  <input
-                    v-model="reservation_detail.max_settlement_date"
-                    type="date"
-                    class="form-control"
-                    placeholder="Fecha máxima de liquidación"
-                    @change="onSettlementDateChange"
-                  >
+                  <label>Fecha limite de liquidación*</label>
+                  <input v-model="reservation_detail.max_settlement_date" type="date" class="form-control"
+                    placeholder="Fecha máxima de liquidación" @change="onSettlementDateChange">
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <div class="form-group">
-                  <label>Fecha máxima de pago*</label>
-                  <input
-                    v-model="reservation_detail.max_payment_date"
-                    type="date"
-                    class="form-control"
-                    placeholder="Fecha máxima de pago"
-                  >
+                  <label>Fecha limite de pago*</label>
+                  <input v-model="reservation_detail.max_payment_date" type="date" class="form-control"
+                    placeholder="Fecha máxima de pago">
                 </div>
               </div>
 
@@ -71,48 +45,32 @@
               <div class="col-12 col-md-4">
                 <div class="form-group">
                   <label>Destino*</label>
-                  <input
-                    :value="reservation_detail.reservable.destination"
-                    type="text"
-                    class="form-control"
+                  <input :value="reservation_detail.reservable.destination" type="text" class="form-control"
                     placeholder="Nombre destino"
-                    @change="reservation_detail.reservable.destination=capitalizeInput($event.target.value)"
-                  >
+                    @change="reservation_detail.reservable.destination = capitalizeInput($event.target.value)">
                 </div>
               </div>
               <div class="col-12 col-md-4">
                 <div class="form-group">
                   <label>Tour*</label>
-                  <input
-                    :value="reservation_detail.reservable.tour_name"
-                    type="text"
-                    class="form-control"
+                  <input :value="reservation_detail.reservable.tour_name" type="text" class="form-control"
                     placeholder="Nombre de tour"
-                    @change="reservation_detail.reservable.tour_name=capitalizeInput($event.target.value)"
-                  >
+                    @change="reservation_detail.reservable.tour_name = capitalizeInput($event.target.value)">
                 </div>
               </div>
               <div class="col-12 col-md-4">
                 <div class="form-group">
                   <label>Paquete</label>
-                  <input
-                    :value="reservation_detail.reservable.package_name"
-                    type="text"
-                    class="form-control"
+                  <input :value="reservation_detail.reservable.package_name" type="text" class="form-control"
                     placeholder="Nombre de paquete"
-                    @change="reservation_detail.reservable.package_name=capitalizeInput($event.target.value)"
-                  >
+                    @change="reservation_detail.reservable.package_name = capitalizeInput($event.target.value)">
                 </div>
               </div>
               <div class="col-12 col-md-12">
                 <div class="form-group">
                   <label>Fecha*</label>
-                  <input
-                    v-model="reservation_detail.reservable.date"
-                    type="date"
-                    class="form-control"
-                    placeholder="Fecha del tour"
-                  >
+                  <input v-model="reservation_detail.reservable.date" type="date" class="form-control"
+                    placeholder="Fecha del tour">
                 </div>
               </div>
             </div>
@@ -122,42 +80,25 @@
               <div class="col-12 col-md-6">
                 <div class="form-group">
                   <label>Adultos*</label>
-                  <input
-                    v-model="reservation_detail.reservable.adults_quantity"
-                    type="number"
-                    class="form-control"
-                    placeholder="Cantidad de adultos"
-                    @change="updatePeopleQty"
-                  >
+                  <input v-model="reservation_detail.reservable.adults_quantity" type="number" class="form-control"
+                    placeholder="Cantidad de adultos" @change="updatePeopleQty">
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <div class="form-group">
                   <label>Menores*</label>
-                  <input
-                    v-model="reservation_detail.reservable.minors_quantity"
-                    type="number"
-                    class="form-control"
-                    placeholder="Cantidad de menores"
-                    @change="updatePeopleQty"
-                  >
+                  <input v-model="reservation_detail.reservable.minors_quantity" type="number" class="form-control"
+                    placeholder="Cantidad de menores" @change="updatePeopleQty">
                 </div>
               </div>
             </div>
 
             <div class="row">
-              <div
-                v-for="(index) in (parseInt(peopleQty))"
-                :key="index"
-                class="col-12 col-md-4"
-              >
+              <div v-for="(index) in (parseInt(peopleQty))" :key="index" class="col-12 col-md-4">
                 <div class="form-group">
                   <label>Edad {{ index }}*</label>
-                  <input
-                    v-model="reservation_detail.reservation_detail_ages[index-1]"
-                    type="number"
-                    class="form-control"
-                  >
+                  <input v-model="reservation_detail.reservation_detail_ages[index - 1]" type="number"
+                    class="form-control">
                 </div>
               </div>
             </div>
@@ -166,12 +107,8 @@
               <div class="col-12 col-md-12">
                 <div class="form-group">
                   <label>Descripción*</label>
-                  <textarea
-                    v-model="reservation_detail.reservable.description"
-                    type="text"
-                    class="form-control"
-                    placeholder="Descripción del tour"
-                  />
+                  <textarea v-model="reservation_detail.reservable.description" type="text" class="form-control"
+                    placeholder="Descripción del tour" />
                 </div>
               </div>
             </div>
@@ -180,47 +117,30 @@
               <div class="col-12 col-md-6">
                 <div class="form-group">
                   <label>Precio público*</label>
-                  <cleave
-                    v-model="reservation_detail.public_price"
-                    :options="numberFormatOptions"
-                    class="form-control"
-                    placeholder="Precio público"
-                  />
+                  <cleave v-model="reservation_detail.public_price" :options="numberFormatOptions" class="form-control"
+                    placeholder="Precio público" />
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <div class="form-group">
                   <label>Precio neto*</label>
-                  <cleave
-                    v-model="reservation_detail.net_price"
-                    :options="numberFormatOptions"
-                    class="form-control"
-                    placeholder="Precio neto"
-                  />
+                  <cleave v-model="reservation_detail.net_price" :options="numberFormatOptions" class="form-control"
+                    placeholder="Precio neto" />
                 </div>
               </div>
 
               <div class="col-12 col-md-4">
-                <b-form-checkbox
-                  v-model="reservation_detail.cancellable"
-                  switch
-                >
+                <b-form-checkbox v-model="reservation_detail.cancellable" switch>
                   Cancelable
                 </b-form-checkbox>
               </div>
               <div class="col-12 col-md-4">
-                <b-form-checkbox
-                  v-model="reservation_detail.editable"
-                  switch
-                >
+                <b-form-checkbox v-model="reservation_detail.editable" switch>
                   Editable
                 </b-form-checkbox>
               </div>
               <div class="col-12 col-md-4">
-                <b-form-checkbox
-                  v-model="reservation_detail.refundable"
-                  switch
-                >
+                <b-form-checkbox v-model="reservation_detail.refundable" switch>
                   Reembolsable
                 </b-form-checkbox>
               </div>
@@ -231,37 +151,16 @@
               <div class="col-12">
                 <div class="form-group">
                   <label>Términos y condiciones*</label>
-                  <textarea
-                    v-model="reservation_detail.terms_conditions"
-                    class="form-control"
-                  />
+                  <textarea v-model="reservation_detail.terms_conditions" class="form-control" />
                 </div>
               </div>
             </div>
 
             <hr>
             <div>
-              <reservation-detail-comments-component
-                :comments="reservation_detail.reservation_detail_comments"
+              <reservation-detail-comments-component :comments="reservation_detail.reservation_detail_comments"
                 :reservation-detail-id="reservation_detail.id"
-                :show-form="reservation_detail.id && reservation_detail.id>0"
-                @onCommentSaved="onCommentSaved"
-              />
-            </div>
-
-            <hr>
-            <div class="row">
-              <div class="col-12">
-                <div v-if="!reservation_detail.multimedia">
-                  <!-- Styled -->
-                  <label>Voucher del proveedor</label>
-                  <b-form-file
-                    v-model="file"
-                    placeholder="Escoge el archivo o arrastra aquí..."
-                    drop-placeholder="Suelta aquí..."
-                  />
-                </div>
-              </div>
+                :show-form="reservation_detail.id && reservation_detail.id > 0" @onCommentSaved="onCommentSaved" />
             </div>
 
           </div>
@@ -521,13 +420,11 @@ export default {
 </script>
 
 <style>
+.modal-dialog.modal-md {
+  max-width: 75%;
+}
 
-  .modal-dialog.modal-md{
-    max-width: 75%;
-  }
-
-  .input-group.mb-2.mr-2{
-    flex-basis: 25%;
-  }
-
+.input-group.mb-2.mr-2 {
+  flex-basis: 25%;
+}
 </style>
