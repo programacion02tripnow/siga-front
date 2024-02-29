@@ -215,7 +215,7 @@
           <feather-icon icon="DollarSignIcon" size="20" />
         </b-button>
 
-        <b-button v-b-tooltip.hover variant="info" :disabled="(!data.item.id)"
+        <b-button class="d-none" v-b-tooltip.hover variant="info" :disabled="(!data.item.id)"
           :title="data.item.invoiced.toString() === '1' ? 'Facturado' : 'Marcar como facturado'"
           @click="markAsInvoiced(data)">
           <feather-icon icon="FileTextIcon" size="20" />

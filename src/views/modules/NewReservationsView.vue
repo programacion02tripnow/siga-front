@@ -2,7 +2,7 @@
   <div>
     <div v-if="reservation.id" class="d-flex">
       <b-badge pill variant="info" class="mb-2 mr-2" style="font-size: 14px;font-weight: bolder">
-        {{ reservation.booking_id }}
+        {{ reservation.company_code }}-{{ reservation.company_consecutive }}
       </b-badge>
 
       <b-badge pill :variant="statusPillVariant" class="mb-2" style="font-size: 14px;font-weight: bolder">
@@ -30,7 +30,7 @@
 
       <!-- modal para agregar/editar pago nuevo !-->
       <payment-method-form-modal ref="paymentMethodFormModal" :payment-methods="paymentMethods" :max-amount="saldo"
-        :amount="paymentDateSelected ? paymentDateSelected.amount : reservation.with_payments ? 0 : reservation.public_price"
+        :amount="paymentDateSelected ? paymentDateSelected.amount : reservation.with_payments ? 0 : saldo"
         @save="savePaymentModal" @close="closePaymentMethodFormModal" :wallet="totalWallet" />
 
       <!-- modal para agregar/editar payment dates !-->
@@ -420,7 +420,6 @@ export default {
   },
   mounted() {
     this.initData()
-    console.log(this.reservation.reservation_payments)
     /* Provider.get().then(providers => {
       this.providers = providers
     }) */
@@ -447,7 +446,6 @@ export default {
         this.loading = false
         this.showOverlay = false
 
-        console.log(this.users)
         if (this.totalWallet > 0) {
           const pm = new PaymentMethod()
           pm.setAttr('id', 0)
@@ -690,6 +688,7 @@ export default {
             },
           })
           if (!this.reservation.id) {
+            this.$forceUpdate()
             this.$router.push('/edit-reservation/' + response.data.id)
           } else {
             this.editCreatedUser = false

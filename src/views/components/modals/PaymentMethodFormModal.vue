@@ -112,6 +112,11 @@ export default {
         e.preventDefault()
         return
       }
+      if (this.finalAmount > this.amount) {
+        this.showError('Ingrese un monto menor a $' + this.numberFormat(this.amount))
+        e.preventDefault()
+        return
+      }
       /* if (!this.date) {
         this.showError('Seleccione una fecha de pago')
         e.preventDefault()

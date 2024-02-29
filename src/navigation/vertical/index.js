@@ -2,7 +2,7 @@ export default [
   {
     title: 'Dashboard',
     route: 'home',
-    icon: 'HomeIcon',
+    icon: 'BarChartIcon',
     resource: 'Dashboard',
     action: 'VIEW_GENERAL_DASHBOARD',
   },
