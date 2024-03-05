@@ -5,11 +5,13 @@ import Relation from '@/dc-it/types/Relation'
 import LeadStatus from '@/dc-it/models/LeadStatus'
 import User from '@/dc-it/models/User'
 import LeadChannel from '@/dc-it/models/LeadChannel'
+import LeadComment from './LeadComments'
+import MultipleRelation from '@/dc-it/types/MutipleRelation'
 
 export default class Lead extends Model {
   endpoint = 'leads';
 
-  related = ['lead_channel', 'lead_status', 'user']
+  related = ['lead_channel', 'lead_status', 'user', 'lead_comments']
 
   fields = [
     new Field('id', 'Código').disabled().noFilterable(),
@@ -25,6 +27,7 @@ export default class Lead extends Model {
     new Field('desirable_date', 'Fecha deseada de viaje', 'date').hide(),
     new Relation('lead_status', 'Estado', LeadStatus, 'name'),
     new Relation('user', 'Usuario', User, 'username').hide(),
+    new MultipleRelation('lead_comments', 'Comentarios', LeadComment, 'comment').hide().noFilterable(),
   ];
 
   clone = () => Lead;
