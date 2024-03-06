@@ -12,22 +12,7 @@ export default class Lead extends Model {
   endpoint = 'leads';
 
   related = ['lead_channel', 'lead_status', 'user', 'lead_comments']
-  actions = [
-    {
-      class: 'btn-secondary',
-      disabled() {
-        return false
-      },
-      text: 'Comisiones',
-      icon: 'SlidersIcon',
-      action: 'commissionSettings',
-      params(model) {
-        return {
-          id: model.getAttr('id'),
-        }
-      },
-    },
-  ]
+
   fields = [
     new Field('id', 'Código').disabled().noFilterable(),
     new Field('first_name', 'Nombre'),
