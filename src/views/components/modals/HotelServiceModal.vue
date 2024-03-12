@@ -337,11 +337,6 @@ export default {
         e.preventDefault()
         return
       }
-      if (this.reservation_detail.with_payments && (new Date(this.reservation_detail.reservable.check_in) > new Date(this.reservation_detail.max_payment_date))) {
-        this.showError('La fecha de check in tiene que ser menor a la fecha limite de pago')
-        e.preventDefault()
-        return
-      }
       /* if (!this.reservation_detail.reservable.adults_quantity || Number.isNaN(this.reservation_detail.reservable.adults_quantity)) {
         this.showError('Ingrese la cantidad de adultos')
         e.preventDefault()
@@ -451,6 +446,7 @@ export default {
         }
         reader.readAsDataURL(this.file)
       } else {
+        this.reservation_detail.editable = true;
         this.$emit('save', this.reservation_detail)
       }
     },
